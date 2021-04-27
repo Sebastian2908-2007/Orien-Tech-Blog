@@ -33,7 +33,7 @@ app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'handlebars');
 
 // turn on routes
-
+app.use(routes);
 
 
 // turn on connection to db and server
