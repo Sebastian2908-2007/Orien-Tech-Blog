@@ -1,6 +1,6 @@
 const User = require('./User');
 const BlogPost = require('./BlogPost');
-const Like = require('./Like');
+const Likes = require('./Like');
 const Comment = require('./Comment');
 
 User.hasMany(BlogPost, {
@@ -14,30 +14,30 @@ BlogPost.belongsTo(User, {
 });
 
 User.belongsToMany(BlogPost, {
-    through: Like,
+    through: Likes,
     as: 'liked_blogposts',
     foreignKey: 'user_id'
 });
 
 BlogPost.belongsToMany(User, {
-    through: Like,
+    through: Likes,
     as: 'liked_blogposts',
     foreignKey:'blogpost_id'
 });
 
-Like.belongsTo(User, {
+Likes.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-Like.belongsTo(BlogPost, {
+Likes.belongsTo(BlogPost, {
     foreignKey: 'blogpost_id'
 });
 
-User.hasMany(Like, {
+User.hasMany(Likes, {
     foreignKey: 'user_id'
 });
 
-BlogPost.hasMany(Like, {
+BlogPost.hasMany(Likes, {
     foreignKey: 'blogpost_id'
 });
 
@@ -57,4 +57,4 @@ BlogPost.hasMany(Comment, {
     foreignKey: 'blogpost_id'
 })
 
-module.exports = {Like, User, BlogPost, Comment};
+module.exports = {Likes, User, BlogPost, Comment};

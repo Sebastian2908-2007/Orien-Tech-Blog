@@ -1,4 +1,4 @@
-const {Model, Datatypes, DataTypes} = require('sequelize');
+const {Model,  DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Like extends Model {}
@@ -18,7 +18,7 @@ Like.init(
                 key: 'id'
             }
         },
-        blog_post_id: {
+        blogpost_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -32,7 +32,7 @@ Like.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'like'
+        modelName: 'likes'
     }
 );
 
