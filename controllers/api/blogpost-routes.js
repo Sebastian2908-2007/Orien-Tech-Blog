@@ -15,9 +15,17 @@ router.get('/', (req, res) => {
         order: [['created_at', 'DESC']],
         include: [
             {
-                model: User,
+                model: Comment,
+                attributes: ['id', 'comment_text', 'blogpost_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
                 attributes: ['username']
-            }
+                }
+            },
+            {
+           model: User,
+           attributes: ['username']
+            },
         ]
 
     })

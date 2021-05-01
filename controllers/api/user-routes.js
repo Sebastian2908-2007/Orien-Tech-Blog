@@ -70,7 +70,7 @@ User.create({
  router.post('/login', (req, res) => {
      User.findOne({
          where: {
-             email: res.body.email
+             email: req.body.email
          }
      })
      .then(dbBlogData => {
