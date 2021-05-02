@@ -78,14 +78,18 @@ router.post('/', (req, res) => {
     });
 });
 
-// /api/posts/like
+// /api/blogposts/like
 router.put('/like', (req, res) => {
-BlogPost.upvote(req.body, { Likes })
-.then(updatedPostData => res.json(updatedPostData))
-.catch(err => {
-  console.log(err);
-  res.status(400).json(err);
- });
+ // make sure the session exists first
+ if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    BlogPost.upvote({ ...req.body, user_id: req.session.user_id }, { Likes, Comment, User })
+      .then(updatedVoteData => res.json(updatedVoteData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 router.put('/:id', (req,res) => {
