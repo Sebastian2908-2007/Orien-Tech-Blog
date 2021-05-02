@@ -1,5 +1,5 @@
 
-<article class="post">
+<!--<article class="post">
   <div class="title">
     <a href="{{blogposts.title}}" target="_blank">{{blogposts.title}}</a>
     <span>({{blogposts.blog_text}})</span>
@@ -10,7 +10,10 @@
     |
     <a href="/blogposts/{{blogposts.id}}">{{blogposts.comments.length}} comment(s)</a>
   </div>
-</article>
+</article>-->
+
+ {{> blogpost-info blogposts}}
+
 {{#if loggedIn}}
 <form class="comment-form">
   <div>
@@ -24,18 +27,7 @@
 </form>
 {{/if}}
 
-<div class="comments">
-  {{#each blogposts.comments}}
-  <section class="comment">
-    <div class="meta">
-      {{user.username}} on {{created_at}}
-    </div>
-    <div class="text">
-      {{comment_text}}
-    </div>
-  </section>
-  {{/each}}
-</div>
+{{> comments blogposts.comments}}
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
 <script src="/javascript/like.js"></script>

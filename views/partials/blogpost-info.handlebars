@@ -1,0 +1,11 @@
+<article class="post">
+      <div class="title">
+        <a href="{{title}}" target="_blank">{{title}}</a>
+        <span>({{blog_text}})</span>
+      </div>
+      <div class="meta">
+        {{like_count}} {{format_plural "point" like_count}} by {{user.username}} on  {{format_date created_at}}
+         |
+        <a href="/blogposts/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+      </div>
+    </article>
