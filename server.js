@@ -5,7 +5,7 @@ const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
 const hbs = exphbs.create({helpers});
-
+const cors = require('cors');
 
 const session = require('express-session');
 const sequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -24,7 +24,7 @@ const sess = {
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+app.use(cors())
 // session middleware
 app.use(session(sess));
 
