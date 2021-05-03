@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {BlogPost, User, Likes, Comment} = require('../../models');
 const sequelize = require('../../config/connection');
-
+const auth = require('../../utils/authorazation');
 
 // get all blogposts
 
@@ -65,11 +65,11 @@ router.get('/:id', (req, res) => {
  });
 
 
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
     BlogPost.create({
         title: req.body.title,
         blog_text: req.body.blog_text,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
     .then(dbBlogData => res.json(dbBlogData))
     .catch(err => {
@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
 });
 
 // /api/blogposts/like
-router.put('/like', (req, res) => {
+router.put('/like', auth, (req, res) => {
  // make sure the session exists first
  if (req.session) {
     // pass session id along with all destructured properties on req.body
@@ -92,7 +92,7 @@ router.put('/like', (req, res) => {
   }
 });
 
-router.put('/:id', (req,res) => {
+router.put('/:id', auth, (req,res) => {
     BlogPost.update(
         {
             title: req.body.title,
@@ -117,7 +117,7 @@ router.put('/:id', (req,res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     BlogPost.destroy({
         where: {
             id: req.params.id 

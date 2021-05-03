@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {User,BlogPost, Likes, Comment} = require('../../models');
 
+
 router.get('/', (req,res) => {
     User.findAll({})
     .then(dbBlogData => res.json(dbBlogData))
@@ -50,7 +51,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.post('/',(req, res) => {
+router.post('/',  (req, res) => {
 User.create({
     username: req.body.username,
     email: req.body.email,
@@ -94,7 +95,7 @@ User.create({
      })
  });
 
- router.put('/:id', (req,res) => {
+ router.put('/:id',  (req,res) => {
      User.update(req.body, {
          individualHooks: true,
          where: {
