@@ -66,6 +66,10 @@ User.create({
         res.json(dbBlogData);
     })
    })
+   .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+})
  });
 
  router.post('/login', (req, res) => {
@@ -92,6 +96,9 @@ User.create({
 
              res.json({user: dbBlogData, message: 'you are officially logged in!'});
          })
+     }).catch(err => {
+         console.log(err);
+         res.status(500).json(err)
      })
  });
 
