@@ -51,6 +51,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
+//added catch
 router.post('/',  (req, res) => {
 User.create({
     username: req.body.username,
@@ -72,6 +73,7 @@ User.create({
 })
  });
 
+ //added catch
  router.post('/login', (req, res) => {
      User.findOne({
          where: {
